@@ -5,18 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Skill {
+@AllArgsConstructor
+@Entity(name = "user_profiles")
 
+public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String skill;
+    private Integer id;
+    private String bio;
 
-    @ManyToOne()
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
 }

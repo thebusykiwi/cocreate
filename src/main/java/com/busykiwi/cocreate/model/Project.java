@@ -1,5 +1,6 @@
 package com.busykiwi.cocreate.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,14 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Skill {
-
+@AllArgsConstructor
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String skill;
+    private String name;
+    private String description;
+    private String url;
 
     @ManyToOne()
     @JoinColumn(name = "user_id")
