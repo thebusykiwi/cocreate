@@ -1,5 +1,8 @@
 package com.busykiwi.cocreate.controller;
 
+import com.busykiwi.cocreate.dto.LoginRequest;
+import com.busykiwi.cocreate.dto.LoginResponse;
+import com.busykiwi.cocreate.model.LoginStatus;
 import com.busykiwi.cocreate.model.User;
 import com.busykiwi.cocreate.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,24 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<?> login() {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        LoginStatus status = authService.checkCredentials(loginRequest);
+
+        LoginResponse response = new LoginResponse();
+
+        if (status == LoginStatus.SUCCESS) {
+            response.setStatus(status);
+            response.setMessage("Login successful");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else if (status == LoginStatus.INVALID_PASSWORD) {
+            response.setStatus(status);
+            response.setMessage("Invalid password");
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        } else{
+            response.setStatus(status);
+            response.setMessage("User not found");
+            return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+        }
     }
 }
