@@ -18,7 +18,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("register")
-    public ResponseEntity<?> register(@ModelAttribute User user) {
+    public ResponseEntity<?> register(@RequestBody User user) {
         User newUser = null;
         try {
             newUser = authService.addUser(user);
