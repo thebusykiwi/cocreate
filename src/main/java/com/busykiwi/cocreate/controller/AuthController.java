@@ -2,6 +2,8 @@ package com.busykiwi.cocreate.controller;
 
 import com.busykiwi.cocreate.dto.LoginRequest;
 import com.busykiwi.cocreate.dto.LoginResponse;
+import com.busykiwi.cocreate.dto.RegisterRequest;
+import com.busykiwi.cocreate.dto.RegisterResponse;
 import com.busykiwi.cocreate.model.LoginStatus;
 import com.busykiwi.cocreate.model.User;
 import com.busykiwi.cocreate.service.AuthService;
@@ -18,13 +20,22 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        User newUser = null;
+    public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest registerRequest) {
+        User newUser = new User();
+        newUser.setName(registerRequest.getName());
+        newUser.setUsername(registerRequest.getUsername());
+        newUser.setEmail(registerRequest.getEmail());
+        newUser.setPassword(registerRequest.getPassword());
         try {
-            newUser = authService.addUser(user);
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+            newUser = authService.addUser(newUser);
+            RegisterResponse response = new RegisterResponse();
+            response.setId(newUser.getId());
+            response.setName(newUser.getName());
+            response.setUsername(newUser.getUsername());
+            response.setEmail(newUser.getEmail());
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new RegisterResponse(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
