@@ -19,6 +19,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+
     @PostMapping("register")
     public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest registerRequest) {
         User newUser = new User();
