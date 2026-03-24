@@ -4,7 +4,7 @@ import com.busykiwi.cocreate.dto.LoginRequest;
 import com.busykiwi.cocreate.dto.LoginResponse;
 import com.busykiwi.cocreate.dto.RegisterRequest;
 import com.busykiwi.cocreate.dto.RegisterResponse;
-import com.busykiwi.cocreate.model.LoginStatus;
+import com.busykiwi.cocreate.enums.LoginStatus;
 import com.busykiwi.cocreate.model.User;
 import com.busykiwi.cocreate.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
-
 
     @PostMapping("register")
     public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest registerRequest) {

@@ -14,9 +14,5 @@ public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String skill;
-
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
-    private User user;
+    private String name;
 }

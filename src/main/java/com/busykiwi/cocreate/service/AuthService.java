@@ -1,7 +1,7 @@
 package com.busykiwi.cocreate.service;
 
 import com.busykiwi.cocreate.dto.LoginRequest;
-import com.busykiwi.cocreate.model.LoginStatus;
+import com.busykiwi.cocreate.enums.LoginStatus;
 import com.busykiwi.cocreate.model.User;
 import com.busykiwi.cocreate.model.UserProfile;
 import com.busykiwi.cocreate.repository.AuthRepository;

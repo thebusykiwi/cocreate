@@ -1,4 +1,4 @@
-package com.busykiwi.cocreate.model;
+package com.busykiwi.cocreate.enums;
 
 public enum LoginStatus {
     SUCCESS,
