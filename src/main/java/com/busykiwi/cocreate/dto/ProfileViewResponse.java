@@ -12,7 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class ProfileViewResponse {
     private int id;
-    private String name;
-    private String username;
     private String bio;
 }

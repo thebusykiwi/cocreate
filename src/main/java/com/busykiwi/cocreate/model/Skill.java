@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "skills")
+import java.util.List;
+
+@Entity
+@Table(name = "skills")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

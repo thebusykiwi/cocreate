@@ -1,6 +1,7 @@
 package com.busykiwi.cocreate.controller;
 
 
+import com.busykiwi.cocreate.dto.ApiResponse;
 import com.busykiwi.cocreate.dto.CustomResponse;
 import com.busykiwi.cocreate.dto.ProfileViewResponse;
 import com.busykiwi.cocreate.model.UserProfile;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +23,13 @@ public class ProfileController {
 
     @GetMapping("view")
     public ResponseEntity<?> viewProfile() {
-        ProfileViewResponse userProfile = profileService.getProfile();
+        UserProfile userProfile = profileService.getProfile();
         if (userProfile != null) {
-            return new ResponseEntity<>(userProfile, HttpStatus.OK);
+            ProfileViewResponse profileViewResponse = new ProfileViewResponse(userProfile.getId(), userProfile.getBio());
+            return new ResponseEntity<>(new ApiResponse<ProfileViewResponse>(true, "success", profileViewResponse), HttpStatus.OK);
         } else {
             CustomResponse response = new CustomResponse(
-                    "error", "No user is currently logged"
+                    "error", "Profile not created"
             );
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }

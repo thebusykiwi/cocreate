@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "projects")
+@Entity
+@Table(name = "projects")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,4 +18,8 @@ public class Project {
     private String name;
     private String description;
     private String url;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

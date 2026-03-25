@@ -19,12 +19,7 @@ public class AuthService {
     private User currentUser;
 
     public User addUser(User user) {
-        User savedUser = authRepository.save(user);
-        UserProfile userProfile = new UserProfile();
-        userProfile.setBio("");
-        userProfile.setUser(savedUser);
-        profileRespository.save(userProfile);
-        return savedUser;
+        return authRepository.save(user);
     }
 
     public LoginStatus checkCredentials(LoginRequest loginRequest) {

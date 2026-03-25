@@ -19,12 +19,8 @@ public class ProfileService {
     @Autowired
     private AuthService authService;
 
-    public ProfileViewResponse getProfile() {
+    public UserProfile getProfile() {
         User user = authService.getCurrentUser();
-        UserProfile profile = profileRespository.getUserProfileByUserId(user.getId());
-        ProfileViewResponse profileViewResponse = new ProfileViewResponse(
-                user.getId(), user.getName(), user.getUsername(), profile.getBio()
-        );
-        return profileViewResponse;
+        return profileRespository.getUserProfileByUserId(user.getId());
     }
 }
