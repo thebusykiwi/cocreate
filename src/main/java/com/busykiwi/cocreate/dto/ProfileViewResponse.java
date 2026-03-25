@@ -1,5 +1,6 @@
 package com.busykiwi.cocreate.dto;
 
+import com.busykiwi.cocreate.model.Project;
 import com.busykiwi.cocreate.model.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,4 +14,6 @@ import java.util.List;
 public class ProfileViewResponse {
     private int id;
     private String bio;
+    private List<Skill> skills;
+    private List<Project> projects;
 }
